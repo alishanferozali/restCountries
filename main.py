@@ -1,4 +1,8 @@
+from gettext import install
+
+import locust as locust
 import requests
+from locust import HttpUser, task, between
 import json
 
 
@@ -33,7 +37,18 @@ def rest_countries_api():
         print({str(exception)})
 
 
+class ApiUser(HttpUser):
+    wait_time = between(1, 3)  # Simulates user wait time between requests
+
+    @task
+    def test_api(self):
+        response = self.client.get("/")  # API Endpoint
+        if response.status_code == 200:
+            print("Request Successful")
+        else:
+            print(f"Request Failed: {response.status_code}")
+
 
 if __name__ == '__main__':
-    rest_countries_api()
+    ApiUser()
 

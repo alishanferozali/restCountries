@@ -12,7 +12,16 @@ def rest_countries_api():
         countries_data=requests.get("https://restcountries.com/v3.1/subregion/North America").json()
 
         # Uncomment below statement to print all data for countries in the North American Region in json format.
-        #print(json.dumps(countries_data,indent=4))
+        # print(json.dumps(countries_data,indent=4))
+
+        # Running this api to get all the data  of  rest countries.
+        north_american_countries_data = requests.get("https://restcountries.com/v3.1/all").json()
+
+        # Filter countries from the continent "North America"
+        north_american_countries = [country for country in north_american_countries_data if 'North America' in country.get('continents', [])]
+
+        # Uncomment below statement to print all data for countries in the North American Continent in json format.
+        print(json.dumps(north_american_countries,indent=4))
 
 
         # Running this api to get us all calling codes for countries in the Americas.
@@ -39,5 +48,7 @@ class ApiUser(HttpUser):
 
 
 if __name__ == '__main__':
-    ApiUser()
+    rest_countries_api()
+    #ApiUser()
+
 

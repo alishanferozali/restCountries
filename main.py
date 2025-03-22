@@ -21,17 +21,6 @@ def rest_countries_api():
         # Uncomment below statement to print calling keys with idd.root and idd.suffixes for countries in the Americas.
         # print(json.dumps(calling_codes, indent=4))
 
-        # Below statement will extract all the suffixes from idd object
-        suffixes = [data['idd']['suffixes'] for data in calling_codes]
-
-        # Uncomment below statement to print only calling codes(suffixes) for countries in the Americas in json format.
-        #print(json.dumps(suffixes, indent=4))
-
-        # Below statement will flatten the list of suffixes so that it comes in one array
-        calling_codes_suffixes = [item for sublist in suffixes for item in sublist]
-
-        # Uncomment below statement to print only calling codes(suffixes) for countries in the Americas.
-        #print(calling_codes_suffixes)
 
     except Exception as exception:
         print({str(exception)})
